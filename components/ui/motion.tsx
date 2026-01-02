@@ -16,8 +16,8 @@ export function FadeIn({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: delay, ease: "easeOut" }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, delay: delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -36,18 +36,16 @@ export function ScaleIn({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
+      initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: delay }}
+      transition={{ duration: 0.5, delay: delay, ease: "easeOut" }}
       className={cn(className)}
     >
       {children}
     </motion.div>
   );
 }
-
-// --- MASTERPIECE ANIMATIONS (Used in Landing Page) ---
 
 export function TextReveal({ 
   text, 
@@ -60,15 +58,14 @@ export function TextReveal({
 }) {
   const words = text.split(" ");
   return (
-    <div className={cn("overflow-hidden inline-block", className)}>
+    <div className={cn("overflow-hidden inline-flex flex-wrap gap-x-[0.2em]", className)}>
       {words.map((word, i) => (
         <motion.span
           key={i}
-          initial={{ y: 40, opacity: 0 }}
+          initial={{ y: "100%", opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: delay + (i * 0.1), ease: [0.2, 0.65, 0.3, 0.9] }}
-          className="inline-block mr-[0.2em]"
+          transition={{ duration: 0.8, delay: delay + (i * 0.05), ease: [0.2, 0.65, 0.3, 0.9] }}
         >
           {word}
         </motion.span>
@@ -88,10 +85,10 @@ export function SmoothAppear({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+      initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 1.2, delay: delay, ease: "easeOut" }}
+      transition={{ duration: 1, delay: delay, ease: "easeOut" }}
       className={className}
     >
       {children}
@@ -109,13 +106,13 @@ export function TiltCard({
   return (
     <motion.div
       whileHover={{ 
-        scale: 1.02,
-        rotateY: 5,
-        rotateX: -5,
+        y: -5,
+        rotateY: 2,
+        rotateX: -2,
         transition: { duration: 0.4 }
       }}
       initial={{ rotateY: 0, rotateX: 0 }}
-      className={cn("perspective-1000", className)}
+      className={cn("perspective-1000 transform-gpu", className)}
     >
       {children}
     </motion.div>

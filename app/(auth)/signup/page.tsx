@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Sparkles, ArrowLeft } from "lucide-react";
 import { signup } from "../actions";
 import { toast } from "sonner";
-import { FadeIn } from "@/components/ui/motion";
+import { FadeIn, TiltCard } from "@/components/ui/motion";
 
 export default function SignupPage() {
   async function handleSignup(formData: FormData) {
@@ -17,51 +17,51 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-background overflow-hidden relative">
-      <div className="absolute top-0 right-1/2 translate-x-1/2 w-[800px] h-[600px] bg-indigo-500/20 rounded-full blur-[120px] -z-10" />
+    <div className="min-h-screen w-full flex items-center justify-center bg-white overflow-hidden relative">
+      <div className="absolute inset-0 -z-10">
+         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-vivid-pink/10 rounded-full blur-[120px] opacity-60 animate-blob" />
+      </div>
 
-      <FadeIn className="w-full max-w-md p-4">
-        <Link href="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors">
+      <FadeIn className="w-full max-w-md p-4 relative z-10">
+        <Link href="/" className="inline-flex items-center text-sm font-medium text-slate-500 hover:text-slate-900 mb-8 transition-colors">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Home
         </Link>
-
-        <div className="bg-card/50 backdrop-blur-xl border border-border/50 shadow-2xl rounded-2xl p-8">
+        
+        <TiltCard className="bg-white/70 backdrop-blur-xl border border-white/50 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] rounded-[2rem] p-10">
           <div className="flex flex-col items-center text-center mb-8">
-            <div className="bg-primary/10 p-3 rounded-xl mb-4">
-              <Sparkles className="h-6 w-6 text-primary" />
+            <div className="h-12 w-12 bg-gradient-to-tr from-vivid-pink to-vivid-orange rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-vivid-orange/20">
+              <Sparkles className="h-6 w-6 text-white" />
             </div>
-            <h1 className="text-2xl font-bold tracking-tight">Create an account</h1>
-            <p className="text-sm text-muted-foreground mt-2">
-              Start building your next big idea with AI
-            </p>
+            <h1 className="text-2xl font-black text-slate-900">Create Account</h1>
+            <p className="text-slate-500 mt-2">Start building your next big idea</p>
           </div>
 
-          <form action={handleSignup} className="space-y-4">
+          <form action={handleSignup} className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="fullName">Full Name</Label>
-              <Input id="fullName" name="fullName" placeholder="John Doe" required className="bg-background/50" />
+              <Label className="text-slate-700 font-semibold">Full Name</Label>
+              <Input name="fullName" required className="h-12 bg-white/50 border-slate-200 rounded-xl" />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" name="email" type="email" placeholder="name@example.com" required className="bg-background/50" />
+              <Label className="text-slate-700 font-semibold">Email</Label>
+              <Input name="email" type="email" required className="h-12 bg-white/50 border-slate-200 rounded-xl" />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" name="password" type="password" required className="bg-background/50" />
+              <Label className="text-slate-700 font-semibold">Password</Label>
+              <Input name="password" type="password" required className="h-12 bg-white/50 border-slate-200 rounded-xl" />
             </div>
-            <Button className="w-full h-11 bg-primary hover:bg-primary/90 text-primary-foreground font-medium shadow-lg shadow-primary/20">
+            <Button className="w-full h-12 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-lg font-bold shadow-xl shadow-slate-900/20">
               Create Account
             </Button>
           </form>
 
-          <div className="mt-6 text-center text-sm text-muted-foreground">
-            Already have an account?{" "}
-            <Link href="/login" className="text-primary hover:underline font-medium">
+          <div className="mt-8 text-center text-sm">
+            <span className="text-slate-500">Already have an account? </span>
+            <Link href="/login" className="text-vivid-pink font-bold hover:underline">
               Log in
             </Link>
           </div>
-        </div>
+        </TiltCard>
       </FadeIn>
     </div>
   );
