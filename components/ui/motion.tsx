@@ -1,14 +1,66 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-// 1. Staggered Text Reveal
-export function TextReveal({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) {
+export function FadeIn({ 
+  children, 
+  delay = 0, 
+  className 
+}: { 
+  children: React.ReactNode; 
+  delay?: number; 
+  className?: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: delay, ease: "easeOut" }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function ScaleIn({ 
+  children, 
+  delay = 0, 
+  className 
+}: { 
+  children: React.ReactNode; 
+  delay?: number; 
+  className?: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: delay }}
+      className={cn(className)}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+// --- MASTERPIECE ANIMATIONS (Used in Landing Page) ---
+
+export function TextReveal({ 
+  text, 
+  className, 
+  delay = 0 
+}: { 
+  text: string; 
+  className?: string; 
+  delay?: number; 
+}) {
   const words = text.split(" ");
   return (
-    <div className={cn("overflow-hidden", className)}>
+    <div className={cn("overflow-hidden inline-block", className)}>
       {words.map((word, i) => (
         <motion.span
           key={i}
@@ -25,8 +77,15 @@ export function TextReveal({ text, className, delay = 0 }: { text: string, class
   );
 }
 
-// 2. Slow, smooth fade up
-export function SmoothAppear({ children, delay = 0, className }: { children: React.ReactNode, delay?: number, className?: string }) {
+export function SmoothAppear({ 
+  children, 
+  delay = 0, 
+  className 
+}: { 
+  children: React.ReactNode; 
+  delay?: number; 
+  className?: string; 
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
@@ -40,8 +99,13 @@ export function SmoothAppear({ children, delay = 0, className }: { children: Rea
   );
 }
 
-// 3. 3D Tilt Card Effect
-export function TiltCard({ children, className }: { children: React.ReactNode, className?: string }) {
+export function TiltCard({ 
+  children, 
+  className 
+}: { 
+  children: React.ReactNode; 
+  className?: string; 
+}) {
   return (
     <motion.div
       whileHover={{ 
