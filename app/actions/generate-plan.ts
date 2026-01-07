@@ -4,7 +4,6 @@ import { generateObject } from "ai";
 import { google } from "@ai-sdk/google";
 import { z } from "zod";
 
-// Define the shape of the output we want from the AI
 const projectSchema = z.object({
   name: z.string().describe("A catchy name for the project"),
   tagline: z.string().describe("A one-sentence value proposition"),
@@ -29,8 +28,7 @@ const projectSchema = z.object({
 export async function generateProjectPlan(userPrompt: string) {
   try {
     const { object } = await generateObject({
-      // FIXED: Updated to match your specific model version from the screenshot
-      model: google("gemini-2.5-pro"), 
+      model: google("gemini-2.0-flash-lite"), 
       schema: projectSchema,
       prompt: `
         You are an expert CTO and Senior Product Manager.
