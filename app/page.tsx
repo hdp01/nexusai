@@ -6,7 +6,8 @@ import { Navbar } from "@/components/landing/Navbar";
 import { FadeIn, TiltCard } from "@/components/ui/motion";
 import { DashboardPreview } from "@/components/landing/DashboardPreview";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-import { AnimatedHero } from "@/components/ui/animated-hero"; // Import the new component
+import { AnimatedHero } from "@/components/ui/animated-hero";
+import { PricingWrapper, Heading, Price, Paragraph } from "@/components/ui/animated-pricing-cards"; // Import new components
 import { 
   ArrowRight, Code2, Zap, Brain, Rocket, 
   CheckCircle2, XCircle, Clock, Coins, 
@@ -20,19 +21,14 @@ export default function LandingPage() {
 
       {/* --- HERO SECTION --- */}
       <section className="relative bg-slate-50 overflow-hidden">
-        {/* Background Blobs */}
         <div className="absolute inset-0 -z-10 opacity-60 pointer-events-none">
           <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-vivid-purple/20 rounded-full mix-blend-multiply filter blur-[100px] animate-blob" />
           <div className="absolute top-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-vivid-blue/20 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-2000" />
         </div>
 
         <ContainerScroll
-          titleComponent={
-            // REPLACED OLD STATIC TEXT WITH NEW ANIMATED HERO
-            <AnimatedHero />
-          }
+          titleComponent={<AnimatedHero />}
         >
-          {/* Dashboard Preview (Keep this, it's great) */}
           <div className="w-full h-full bg-slate-50 overflow-hidden rounded-2xl relative">
              <div className="absolute inset-0 overflow-y-auto custom-scrollbar">
                 <div className="scale-[0.8] origin-top md:scale-100">
@@ -48,7 +44,7 @@ export default function LandingPage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black mb-4 text-slate-900">The New Standard</h2>
-            <p className="text-xl text-slate-500">Why the old way of building software is obsolete.</p>
+            <p className="text-xl text-slate-500">Why the old way is obsolete.</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -108,7 +104,7 @@ export default function LandingPage() {
                 </div>
                 <h3 className="text-3xl font-bold text-slate-900 mb-4">AI That Writes Code</h3>
                 <p className="text-lg text-slate-600 max-w-lg">
-                  Describe what you need ("Login page with Google Auth"), and NexusAI writes production-ready code, creates the design, and adds security.
+                  Describe what you need, and NexusAI writes production-ready code, creates the design, and adds security.
                 </p>
               </div>
             </TiltCard>
@@ -136,7 +132,7 @@ export default function LandingPage() {
                   <Rocket className="h-6 w-6 text-vivid-orange" />
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-2">Auto Deploy</h3>
-                <p className="text-slate-600">Push to production with one click.</p>
+                <p className="text-slate-600">Push to production instantly.</p>
               </div>
             </TiltCard>
 
@@ -147,6 +143,65 @@ export default function LandingPage() {
               <h3 className="text-2xl font-bold text-slate-900 mb-2">Instant Speed</h3>
               <p className="text-slate-600">No more waiting for compilation.</p>
             </TiltCard>
+          </div>
+        </div>
+      </section>
+
+      {/* --- ANIMATED PRICING SECTION --- */}
+      <section className="py-32 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl font-black mb-4 text-slate-900">Simple Pricing</h2>
+            <p className="text-xl text-slate-500">Democratizing software development.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto place-items-center">
+            
+            {/* FREE TIER */}
+            <PricingWrapper contactHref="/signup" type="crosses" className="bg-slate-50 border border-slate-200 text-slate-900" waveColor="text-slate-300">
+              <Heading>Free</Heading>
+              <Price>
+                $0<span className="text-2xl font-medium text-slate-400 align-middle ml-2">/mo</span>
+              </Price>
+              <Paragraph>
+                <ul className="space-y-4 mt-4">
+                   <li className="flex gap-2"><CheckCircle2 className="h-5 w-5 text-slate-900"/> Up to 5 People</li>
+                   <li className="flex gap-2"><CheckCircle2 className="h-5 w-5 text-slate-900"/> Basic AI Planning</li>
+                   <li className="flex gap-2"><CheckCircle2 className="h-5 w-5 text-slate-900"/> Community Support</li>
+                </ul>
+              </Paragraph>
+            </PricingWrapper>
+
+            {/* STARTUP TIER (Highlighted) */}
+            <PricingWrapper contactHref="/signup" type="waves" className="bg-vivid-purple text-white border-none scale-105 shadow-vivid-purple/30" waveColor="text-white/10">
+              <Heading>Startup</Heading>
+              <Price>
+                $99<span className="text-2xl font-medium text-purple-200 align-middle ml-2">/mo</span>
+              </Price>
+              <Paragraph>
+                <ul className="space-y-4 mt-4">
+                   <li className="flex gap-2"><CheckCircle2 className="h-5 w-5 text-white"/> Unlimited Projects</li>
+                   <li className="flex gap-2"><CheckCircle2 className="h-5 w-5 text-white"/> Advanced Code Gen</li>
+                   <li className="flex gap-2"><CheckCircle2 className="h-5 w-5 text-white"/> Priority Support</li>
+                </ul>
+              </Paragraph>
+            </PricingWrapper>
+
+            {/* ENTERPRISE TIER */}
+            <PricingWrapper contactHref="/contact" type="crosses" className="bg-slate-900 text-white" waveColor="text-white/10">
+              <Heading>Scale</Heading>
+              <Price>
+                Custom
+              </Price>
+              <Paragraph>
+                <ul className="space-y-4 mt-4 text-slate-300">
+                   <li className="flex gap-2"><CheckCircle2 className="h-5 w-5 text-white"/> Dedicated Servers</li>
+                   <li className="flex gap-2"><CheckCircle2 className="h-5 w-5 text-white"/> Custom AI Models</li>
+                   <li className="flex gap-2"><CheckCircle2 className="h-5 w-5 text-white"/> SLA Guarantee</li>
+                </ul>
+              </Paragraph>
+            </PricingWrapper>
+
           </div>
         </div>
       </section>
